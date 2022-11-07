@@ -2,26 +2,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 export default function Home() {
-  // const data = [
-  // {    
-  //   "id":1,
-  //   "name": "Albert",
-  //   "address": "Bandung",
-  //   "age": 26
-  // },
-  // {    
-  //   "id":2,
-  //   "name": "Lokonga",
-  //   "address": "Zimbabwe",
-  //   "age": 21
-  // },
-  // {    
-  //   "id":3,
-  //   "name": "Jumadi" ,
-  //   "address": "Jakarta",
-  //   "age": 31
-  // }
-  // ]
   return (
     <div>
       <Head>
