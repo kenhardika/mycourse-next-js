@@ -1,36 +1,18 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react';
-
-async function loginAPI(data){
-    let formBody = [];
-    for (let property in data) {
-        let encodedKey = encodeURIComponent(property);
-        let encodedValue = encodeURIComponent(data[property]);
-        formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-    return fetch("https://staging.komunitasmea.com/api/login", {
-        method:'POST', 
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-        mode: 'cors', 
-        credentials: 'include',
-        body: formBody,
-      }).then((response) =>
-       response.json()
-      ).catch((reject)=>
-      console.log(reject)
-      );
-}
+import loginFetchAPI from '../../api/fetch/loginFetchAPI';
 
 export default function LoginFetch() {
     const router = useRouter();
     const [data,setData]= useState({});
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // router.push("/fetch/courses/1");
+        const response = await loginFetchAPI(data);
+        console.log(response.data.user_id);
+        router.push(`/fetch/courses/${response.data.user_id}`);
     }
+    
     const onChangeEvent = (e) =>{
         e.preventDefault();
         setData((prev)=>({...prev,
@@ -38,6 +20,7 @@ export default function LoginFetch() {
         }));
       }
       console.log(data);
+      
     return (
         <div className="w-screen h-screen flex flex-row font-sans">
         <div className="right-section h-full w-full flex justify-center items-center">
@@ -47,9 +30,7 @@ export default function LoginFetch() {
             </div>
             <form
               className="formLayer flex flex-col justify-center w-1/4 p-2 gap-4"
-              method="post"
-              action="/"
-              onSubmit={()=>handleSubmit}
+              onSubmit={handleSubmit}
             >
               <div className="inputForm flex flex-row w-full justify-end px-3 gap-14 ">
                 <label htmlFor="inputName">Nama Lengkap: </label>

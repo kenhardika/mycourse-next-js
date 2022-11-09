@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const loginAxios = async (dataInput) =>{
+export const loginAxiosAPI = async (dataInput) =>{
     let formBody = [];
     for (let property in dataInput) {
         const encodedKey = encodeURIComponent(property);
