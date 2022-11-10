@@ -23,16 +23,15 @@ export default function LoginFetch() {
       
     return (
         <div className="w-screen h-screen flex flex-row font-sans">
-        <div className="right-section h-full w-full flex justify-center items-center">
-          <div className="right-layer h-full w-full flex flex-col items-center justify-center">
-            <div className="loginTitleLayer w-full flex items-end justify-center font-bold">
+          <div className="h-full w-full flex flex-col items-center justify-center bg-white">
+            <div className="w-full flex items-end justify-center font-bold">
               <p>MASUK</p>
             </div>
             <form
-              className="formLayer flex flex-col justify-center w-1/4 p-2 gap-4"
+              className="flex flex-col justify-center w-1/4 p-2 gap-4"
               onSubmit={handleSubmit}
             >
-              <div className="inputForm flex flex-row w-full justify-end px-3 gap-14 ">
+              <div className="flex flex-row w-full justify-end px-3 gap-14 ">
                 <label htmlFor="inputName">Nama Lengkap: </label>
                 <input
                   type="text"
@@ -44,7 +43,7 @@ export default function LoginFetch() {
                 />
               </div>
 
-              <div className="inputForm flex flex-row w-full justify-end px-3 gap-14 ">
+              <div className=" flex flex-row w-full justify-end px-3 gap-14 ">
                 <label htmlFor="inputText">Email: </label>
                 <input
                   type="text"
@@ -55,7 +54,7 @@ export default function LoginFetch() {
                   required
                 />
               </div>
-              <div className="inputForm flex flex-row w-full justify-end px-3 gap-14 ">
+              <div className=" flex flex-row w-full justify-end px-3 gap-14 ">
                 <label htmlFor="inputPass">Kata Sandi: </label>
                 <input
                   type="password"
@@ -67,16 +66,15 @@ export default function LoginFetch() {
                 />
               </div>
               <a className='text-xs text-right px-3'> lupa kata sandi? </a>
-              <div className="layerButton flex justify-center ">
-                <button id="submitBtn" className='rounded-lg px-2 w-40 bg-red-300 
+              <div className=" flex justify-center ">
+                <button className=' text-white rounded-lg px-2 w-40 bg-red-300 
                     text-sm active:translate-y-[2px] p-1' type="submit">
                   Masuk
                 </button>
               </div>
-              <div className="errorLayer"></div>
+              <div className=""></div>
             </form>
           </div>
-        </div>
       </div>
 
     );
