@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import fetchCourseCards from '../../../api/fetch/fetchCourseCards';
+import Header from '../../../components/Header';
 
 
 const Courses = () => {
@@ -17,11 +18,23 @@ const Courses = () => {
     fetchCards();
   },[fetchCards])
   
-  console.log(data);
   return (
-      <div>
-        Course: {id}
-      </div>)
+  <div>
+    <Header/>
+    <main>
+      <p>Kelas</p> 
+      <div className="content">
+        <div className="cards">
+          {data.map((item) => {
+            return <Card key={item.course_id} 
+                    data = {item} 
+                    navigateToDetailCard= {navigateToDetailCard}
+                    />})
+          }
+        </div>
+      </div>
+    </main>
+  </div>  )
 }
 
 export default Courses;
