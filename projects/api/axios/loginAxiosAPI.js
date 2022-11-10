@@ -15,5 +15,5 @@ export const loginAxiosAPI = async (dataInput) =>{
     },
     withCredentials: true
   });
-   console.log(data);
+    return data
 }

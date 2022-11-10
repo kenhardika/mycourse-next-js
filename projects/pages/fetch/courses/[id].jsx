@@ -16,8 +16,7 @@ const Courses = () => {
   
   const navigateToDetailCard = (e, course_id)=> {
     e.preventDefault();
-    console.log(data);
-    console.log(course_id);
+    router.push(`/fetch/courses/lessons/${course_id}`);
   }
 
   useEffect(()=>{
@@ -25,12 +24,11 @@ const Courses = () => {
   },[fetchCards]);
   
   return (
-  <div>
+  <div className='flex flex-col '>
     <Header/>
-    <main>
+    <main className=' flex flex-col p-[50px] bg-[#58717b] text-3xl'>
       <p>Kelas</p> 
-      <div className="content">
-        <div className="cards">
+        <div className="grid grid-cols-4 gap-[20px] p-[20px] bg-[#253237]">
           {data?.map((item) => {
             return <Card key={item.course_id} 
                     data = {item} 
@@ -38,9 +36,9 @@ const Courses = () => {
                     />})
           }
         </div>
-      </div>
     </main>
-  </div>  )
+  </div>  
+  )
 }
 
 export default Courses;

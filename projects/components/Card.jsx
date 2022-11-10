@@ -12,7 +12,7 @@ export default function
         })
 {
 return (
-<div className="bg-white rounded-xl w-[400px] grid grid-col-2">
+<div className="bg-white rounded-xl w-[350px] grid grid-col-2">
     <div className="h-[200px] rounded-t-xl flex flex-col justify-center items-center bg-orange-400">
             <img className=" h-[120px] rounded-md " src={image} alt="" />
     </div>
@@ -20,9 +20,9 @@ return (
             <div className="text-center font-bold p-3 text-xl">
                 {title}
             </div>
-            <div className="flex flex-row items-center p-3 gap-4">
+            <div className="flex flex-row justify-center items-center p-3 gap-4">
                 <img className="h-[70px] rounded-full" src={photo} alt="" />
-                <div className="flex flex-col">
+                <div className="flex flex-col text-lg">
                     <div>
                         {name}
                     </div>
@@ -31,8 +31,8 @@ return (
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center items-center">
-                <button  className=" w-1/4 rounded-xl p-3 text-white font-bold bg-[#e47909]" 
+            <div className="flex h-full justify-center items-center">
+                <button  className=" w-1/4 rounded-xl px-3 py-1 text-base text-white font-bold bg-[#e47909]" 
                 onClick={(e)=> navigateToDetailCard(e, course_id) }>Lanjut</button>
             </div>
     </div>

@@ -173,25 +173,7 @@
     background-color: #e47909;
   }
   
-  body {
-    height: 100vh;
-    background-color: #58717b;
-  }
-  
-  main {
-    background-color: #58717b;
-    display: flex;
-    padding: 0 50px;
-    flex-direction: column;
-  }
-  
-  main > p:first-child {
-    font-size: 1.5rem;
-  }
-  
-  main > p:nth-child(3) {
-    font-size: 0.8rem;
-  }
+
   
   .cards {
     display: grid;
