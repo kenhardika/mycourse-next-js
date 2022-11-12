@@ -16,7 +16,7 @@ export default function Courses(props) {
     
     const navigateToDetailCard = (e, course_id)=> {
       e.preventDefault();
-      router.push(`/axios/courses/lessons/${course_id}`);
+      router.push(`/fetch/courses/lessons/${course_id}-${id}`);
     }
   
     useEffect(()=>{
@@ -24,7 +24,7 @@ export default function Courses(props) {
     },[fetchCards]);
     
     return (
-        <div className='flex flex-col '>
+        <div className='flex flex-col h-full'>
          <Header/> 
             <main className=' flex flex-col p-[50px] bg-[#58717b] text-3xl'>
                 <p>Kelas</p> 

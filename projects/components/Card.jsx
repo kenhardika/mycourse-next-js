@@ -12,7 +12,7 @@ export default function
         })
 {
 return (
-<div className="bg-white rounded-xl w-[350px] grid grid-col-2">
+<div className="bg-white rounded-xl w-full grid grid-col-2">
     <div className="h-[200px] rounded-t-xl flex flex-col justify-center items-center bg-orange-400">
             <img className=" h-[120px] rounded-md " src={image} alt="" />
     </div>
