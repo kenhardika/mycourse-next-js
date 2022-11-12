@@ -24,7 +24,7 @@ const Courses = () => {
   },[fetchCards]);
   
   return (
-  <div className='flex flex-col h-auto items-center bg-[#58717b]'>
+  <div className='flex flex-col h-screen items-center bg-[#58717b]'>
     <Header/>
     <main className='flex flex-col w-11/12 h-auto bg-[#58717b] text-3xl'>
       <p className='py-5'>Kelas</p> 
