@@ -32,7 +32,7 @@ return (
                 </div>
             </div>
             <div className="flex h-full justify-center items-center">
-                <button  className=" w-1/4 rounded-xl px-3 py-1 text-base text-white font-bold bg-[#e47909]" 
+                <button  className=" w-1/4 rounded-xl px-3 py-1 text-base active:translate-y-0.5 text-white font-bold bg-[#e47909]" 
                 onClick={(e)=> navigateToDetailCard(e, course_id) }>Lanjut</button>
             </div>
     </div>

@@ -6,23 +6,28 @@ import Header from '../../../../components/Header';
 
 export default function Lesson(props) {
     const router = useRouter();
-    const { lesson } = router.query;
-    const [course_id, user_id] = lesson.split('-');
+    // const { lesson } = router.query;
+    // const [lesson, setLesson] = useState('');
     const [data, setData] = useState({});
-
+    
     const [chapterIndex, setChapterIndex] = useState(0);
     const [lessonIndex, setLessonIndex] = useState(0);
-  
-    const fetchCourses = useCallback(async () => {
-        // console.log(user_id + " " + course_id);
-        const response = await fetchCard(course_id, user_id);
-        setData(response.data);
-        console.log(response.data);
-    }, [course_id, user_id]);
-
+    
+    const fetchCourses = useCallback(async (courseid, userid) => {
+            const response = await fetchCard(courseid, userid);
+            setData(response.data);
+            console.log(response.data);
+        }, []);
+    
     useEffect(()=>{
-      fetchCourses();
-    }, [fetchCourses]);
+    if (router && router.query.lesson) {
+        const [courseid, userid] = router.query.lesson.split('-');
+        console.log(courseid);
+        console.log(userid);
+        fetchCourses(courseid, userid);
+        // setLesson(router.query.lesson);
+    }
+    }, [router, fetchCourses]);
 
     function handleNextButton(e){
         e.preventDefault();
@@ -64,7 +69,7 @@ export default function Lesson(props) {
           }    
       }
 
-
+      console.log(data);
     return (
     <div className='flex flex-col h-screen gap-3 items-center bg-[#58717b]'>
         <Header></Header>
@@ -75,7 +80,7 @@ export default function Lesson(props) {
               <p className='text-2xl'>{data.chapters[chapterIndex].lessons[lessonIndex].title}</p> :
               <p>{'loading'}</p>
           }
-            <content className="flex flex-col bg-[#253237] items-center gap-3 p-5 rounded-md">
+            <div className="flex flex-col bg-[#253237] items-center gap-3 p-5 rounded-md">
                 {
                     Object.keys(data).length?
                     <iframe className='rounded-md' title='videoplayer' src={data.chapters[chapterIndex].lessons[lessonIndex].link} 
@@ -106,7 +111,7 @@ export default function Lesson(props) {
                         <button id='nextBtn' >loading</button>
                     }
                 </div>
-          </content>
+          </div>
         </main>
       </div>
     );

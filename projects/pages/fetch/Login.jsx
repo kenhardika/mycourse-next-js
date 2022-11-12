@@ -9,7 +9,6 @@ export default function LoginFetch() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await loginFetchAPI(data);
-        console.log(response.data.user_id);
         router.push(`/fetch/courses/${response.data.user_id}`);
     }
     
@@ -19,16 +18,15 @@ export default function LoginFetch() {
             [e.target.name]: e.target.value
         }));
       }
-      console.log(data);
       
     return (
-        <div className="w-screen h-screen flex flex-row font-sans">
-          <div className="h-full w-full flex flex-col items-center justify-center bg-white">
+        <div className="w-screen h-screen flex flex-row font-sans ">
+          <div className="h-full w-full flex flex-col items-center justify-center bg-[#58717b]">
             <div className="w-full flex items-end justify-center font-bold">
-              <p>MASUK</p>
+              <p className='pb-5 text-2xl'>MASUK</p>
             </div>
             <form
-              className="flex flex-col justify-center w-1/4 p-2 gap-4"
+              className="flex bg-white rounded-lg flex-col justify-center w-1/4 p-5 gap-1.5"
               onSubmit={handleSubmit}
             >
               <div className="flex flex-row w-full justify-end px-3 gap-14 ">

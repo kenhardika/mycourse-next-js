@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  background-color: #58717b;
+}
+
 .top-section, footer p, .layerButton, .loginBannerLayer p, .loginBannerLayer, .right-section, .layerText, .left-section, .errorPage {
     display: flex;
     align-items: center;
