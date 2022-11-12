@@ -6,26 +6,19 @@ import Header from '../../../../components/Header';
 
 export default function Lesson(props) {
     const router = useRouter();
-    // const { lesson } = router.query;
-    // const [lesson, setLesson] = useState('');
     const [data, setData] = useState({});
-    
     const [chapterIndex, setChapterIndex] = useState(0);
     const [lessonIndex, setLessonIndex] = useState(0);
     
     const fetchCourses = useCallback(async (courseid, userid) => {
             const response = await fetchCard(courseid, userid);
             setData(response.data);
-            console.log(response.data);
         }, []);
     
     useEffect(()=>{
     if (router && router.query.lesson) {
         const [courseid, userid] = router.query.lesson.split('-');
-        console.log(courseid);
-        console.log(userid);
         fetchCourses(courseid, userid);
-        // setLesson(router.query.lesson);
     }
     }, [router, fetchCourses]);
 

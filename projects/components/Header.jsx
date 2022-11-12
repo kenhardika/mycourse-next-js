@@ -6,7 +6,7 @@ export default function Header(props) {
                     </div>
 
             <div className="flex flex-row justify-center items-center gap-5">
-                        <img src="https://picsum.photos/id/1005/200/300/" alt="" id='avatar' />
+                        <img className=" h-[50px] w-[50px] rounded-full" src="https://picsum.photos/id/1005/200/300/" alt="" id='avatar' />
                         <p> Halo, User! </p>
             </div>
         </header>

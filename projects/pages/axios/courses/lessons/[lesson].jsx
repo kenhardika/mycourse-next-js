@@ -6,23 +6,22 @@ import axiosFetchCard from '../../../../api/axios/axiosFetchCard';
 
 export default function Lesson(props) {
     const router = useRouter();
-    const { lesson } = router.query;
-    const [course_id, user_id] = lesson.split('-');
     const [data, setData] = useState({});
-
     const [chapterIndex, setChapterIndex] = useState(0);
     const [lessonIndex, setLessonIndex] = useState(0);
-  
-    const fetchCourses = useCallback(async () => {
-        // console.log(user_id + " " + course_id);
-        const response = await axiosFetchCard(course_id, user_id);
-        setData(response.data);
-        console.log(response.data);
-    }, [course_id, user_id]);
-
+    
+    const fetchCourses = useCallback(async (courseid, userid) => {
+            const response = await axiosFetchCard(courseid, userid);
+            setData(response.data.data);
+        }, []);
+    
     useEffect(()=>{
-      fetchCourses();
-    }, [fetchCourses]);
+    if (router && router.query.lesson) {
+        const [courseid, userid] = router.query.lesson.split('-');
+        fetchCourses(courseid, userid);
+    }
+    }, [router, fetchCourses]);
+
 
     function handleNextButton(e){
         e.preventDefault();
@@ -65,45 +64,48 @@ export default function Lesson(props) {
       }
 
     return (
-    <div className='detailCourse'>
+    <div className='flex flex-col h-screen gap-3 items-center bg-[#58717b]'>
         <Header></Header>
-        <main className='iframeMain'>
+        <main className='flex flex-col w-11/12 h-full gap-5 bg-[#58717b]'>
+          
           {
               Object.keys(data).length? 
-              <p>{data.chapters[chapterIndex].lessons[lessonIndex].title}</p> :
+              <p className='text-2xl'>{data.chapters[chapterIndex].lessons[lessonIndex].title}</p> :
               <p>{'loading'}</p>
           }
+            <div className="flex flex-col bg-[#253237] items-center gap-3 p-5 rounded-md">
+                {
+                    Object.keys(data).length?
+                    <iframe className='rounded-md' title='videoplayer' src={data.chapters[chapterIndex].lessons[lessonIndex].link} 
+                        width={1300} height={500}>
+                    </iframe> :
+                    <iframe title='videoplayer' src={''} 
+                        width={1300} height={500}>
+                    </iframe>
+                }
+                <p className='text-sm'>
+                    {
+                    Object.keys(data).length?
+                    data.chapters[chapterIndex].lessons[lessonIndex].link:'loading'
+                    }
+                </p>
 
-          {
-              Object.keys(data).length?
-              <iframe title='videoplayer' src={data.chapters[chapterIndex].lessons[lessonIndex].link} 
-                  width={1300} height={500}>
-              </iframe> :
-              <iframe title='videoplayer' src={''} 
-                  width={1300} height={500}>
-              </iframe>
-          }
-          
-          <p>
-              {
-              Object.keys(data).length?
-              data.chapters[chapterIndex].lessons[lessonIndex].link:'loading'
-              }
-          </p>
-
-          <div className="buttonControls">
-              {
-                  Object.keys(data).length? 
-                  <button id='prevBtn' onClick={(e)=>handlePreviousButton(e)}>prev</button>:
-                  <button id='prevBtn' >loading</button>
-              }
-              {   
-                  Object.keys(data).length? 
-                  <button id='nextBtn' onClick={(e)=>handleNextButton(e)}>next</button>:
-                  <button id='nextBtn' >loading</button>
-              }
+                <div className="flex flex-row gap-2">
+                    {
+                        Object.keys(data).length? 
+                        <button className='w-[100px] h-[30px] outline-none bg-slate-400 rounded-lg 
+                            text-white active:translate-y-1' id='prevBtn' onClick={(e)=>handlePreviousButton(e)}>Previous</button>:
+                        <button id='prevBtn' >loading</button>
+                    }
+                    {   
+                        Object.keys(data).length? 
+                        <button className='w-[100px] h-[30px] outline-none bg-slate-400 rounded-lg 
+                            text-white active:translate-y-1' id='nextBtn' onClick={(e)=>handleNextButton(e)}>Next</button>:
+                        <button id='nextBtn' >loading</button>
+                    }
+                </div>
           </div>
         </main>
-      </div>
+    </div>
     );
 }
