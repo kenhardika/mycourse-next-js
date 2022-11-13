@@ -10,9 +10,9 @@ export default function Home() {
       <section className="w-full h-screen justify-center flex flex-col items-center gap-8">
         <h1 className="text-3xl">Select Request API Type</h1>
         <div className="flex flex-row gap-8">
-          <Link href="/fetch/Login" className='w-[100px] text-center hover:bg-slate-400 bg-slate-500 rounded-lg active:translate-y-0.5 outline-none text-white' > Fetch </Link>
-          <Link href="/axios/Login" className='w-[100px] text-center hover:bg-slate-400 bg-slate-500 rounded-lg active:translate-y-0.5 outline-none text-white'> Axios </Link>
-          <Link href="/xhr/Login" className='w-[100px] text-center hover:bg-slate-400 bg-slate-500 rounded-lg active:translate-y-0.5 outline-none text-white' > XHR </Link>
+          <Link href="/fetch/Login-fetch" className='w-[100px] text-center hover:bg-slate-400 bg-slate-500 rounded-lg active:translate-y-0.5 outline-none text-white' > Fetch </Link>
+          <Link href="/axios/Login-axios" className='w-[100px] text-center hover:bg-slate-400 bg-slate-500 rounded-lg active:translate-y-0.5 outline-none text-white'> Axios </Link>
+          <Link href="/xhr/Login-xhr" className='w-[100px] text-center hover:bg-slate-400 bg-slate-500 rounded-lg active:translate-y-0.5 outline-none text-white' > XHR </Link>
         </div>
       </section>
   </div>

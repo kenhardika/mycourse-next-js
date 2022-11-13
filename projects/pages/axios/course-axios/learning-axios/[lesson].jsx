@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
 import React from 'react';
-import { useState, useEffect, useCallback } from 'react';
-import fetchCard from '../../../../api/fetch/fetchCard';
+import { useRouter } from 'next/router';
+import { useState, useCallback, useEffect } from 'react';
 import Header from '../../../../components/Header';
+import axiosFetchCard from '../../../../api/axios/axiosFetchCard';
 
 export default function Lesson(props) {
     const router = useRouter();
@@ -11,8 +11,8 @@ export default function Lesson(props) {
     const [lessonIndex, setLessonIndex] = useState(0);
     
     const fetchCourses = useCallback(async (courseid, userid) => {
-            const response = await fetchCard(courseid, userid);
-            setData(response.data);
+            const response = await axiosFetchCard(courseid, userid);
+            setData(response.data.data);
         }, []);
     
     useEffect(()=>{
@@ -21,6 +21,7 @@ export default function Lesson(props) {
         fetchCourses(courseid, userid);
     }
     }, [router, fetchCourses]);
+
 
     function handleNextButton(e){
         e.preventDefault();
@@ -61,15 +62,13 @@ export default function Lesson(props) {
               }
           }    
       }
-
     return (
     <div className='bg-[#58717b] h-screen bg-scroll'>  
         <div className='flex flex-col gap-3 items-center bg-[#58717b]'>
             <Header></Header>
-            <main className='flex flex-col w-11/12 h-full gap-5 p-[20px] bg-[#58717b]'>
-            
+            <main className='flex flex-col w-11/12 p-[20px] gap-5 bg-[#58717b]'>
             {
-                Object.keys(data).length? 
+                Object.keys(data).length?
                 <p className='text-2xl'>{data.chapters[chapterIndex].lessons[lessonIndex].title}</p> :
                 <p>{'loading'}</p>
             }
@@ -92,13 +91,13 @@ export default function Lesson(props) {
 
                     <div className="flex flex-row gap-2">
                         {
-                            Object.keys(data).length? 
+                            Object.keys(data).length?
                             <button className='w-[100px] h-[30px] outline-none bg-slate-400 rounded-lg 
                                 text-white active:translate-y-1' id='prevBtn' onClick={(e)=>handlePreviousButton(e)}>Previous</button>:
                             <button id='prevBtn' >loading</button>
                         }
                         {   
-                            Object.keys(data).length? 
+                            Object.keys(data).length?
                             <button className='w-[100px] h-[30px] outline-none bg-slate-400 rounded-lg 
                                 text-white active:translate-y-1' id='nextBtn' onClick={(e)=>handleNextButton(e)}>Next</button>:
                             <button id='nextBtn' >loading</button>

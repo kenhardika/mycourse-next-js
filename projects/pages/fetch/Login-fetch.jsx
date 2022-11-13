@@ -9,7 +9,7 @@ export default function LoginFetch() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await loginFetchAPI(data);
-        router.push(`/fetch/courses/${response.data.user_id}`);
+        router.push(`/fetch/course-fetch/${response.data.user_id}`);
     }
     
     const onChangeEvent = (e) =>{

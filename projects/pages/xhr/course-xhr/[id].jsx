@@ -25,7 +25,7 @@ const Courses = () => {
   
   const navigateToDetailCard = (e, course_id)=> {
     e.preventDefault();
-    router.push(`/xhr/courses/lessons/${course_id}-${id}`);
+    router.push(`/xhr/course-xhr/learning-xhr/${course_id}-${id}`);
   }
 
   useEffect(()=>{

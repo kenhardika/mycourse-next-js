@@ -22,7 +22,7 @@ export default function LoginXHR() {
       http.withCredentials = true;
       http.onload = function() {
         if(http.readyState == 4 && http.status == 200) {
-          router.push(`/xhr/courses/${http.response.data.user_id}`)
+          router.push(`/xhr/course-xhr/${http.response.data.user_id}`)
         }
       }
       http.send(formBody);

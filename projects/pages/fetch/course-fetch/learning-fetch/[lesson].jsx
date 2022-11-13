@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
+import fetchCard from '../../../../api/fetch/fetchCard';
 import Header from '../../../../components/Header';
 
 export default function Lesson(props) {
@@ -10,17 +11,8 @@ export default function Lesson(props) {
     const [lessonIndex, setLessonIndex] = useState(0);
     
     const fetchCourses = useCallback(async (courseid, userid) => {
-            const request = new XMLHttpRequest();
-            request.onload = function() {
-                if (request.readyState == 4 && request.status == 200) {
-                    setData(request.response.data);
-                }
-            };
-            request.open('GET', `https://staging.komunitasmea.com/api/course?course_id=${courseid}&user_id=${userid}`, true);
-            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            request.withCredentials = true;
-            request.responseType ='json';
-            request.send(null);
+            const response = await fetchCard(courseid, userid);
+            setData(response.data);
         }, []);
     
     useEffect(()=>{
@@ -72,9 +64,9 @@ export default function Lesson(props) {
 
     return (
     <div className='bg-[#58717b] h-screen bg-scroll'>  
-        <div className='flex flex-col gap-3 bg-scroll items-center bg-[#58717b]'>
+        <div className='flex flex-col gap-3 items-center bg-[#58717b]'>
             <Header></Header>
-            <main className='flex flex-col w-11/12 gap-5 bg-[#58717b]'>
+            <main className='flex flex-col w-11/12 gap-5 p-[20px] bg-[#58717b]'>
             
             {
                 Object.keys(data).length? 
@@ -115,6 +107,6 @@ export default function Lesson(props) {
             </div>
             </main>
         </div>
-    </div> 
+    </div>
     );
 }
