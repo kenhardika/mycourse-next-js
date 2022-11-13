@@ -10,7 +10,6 @@ export default function LoginAxios(props) {
   const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await loginAxiosAPI(data);
-        console.log(response);
         router.push(`/axios/courses/${response.data.user_id}`);
   }
     
@@ -72,7 +71,6 @@ export default function LoginAxios(props) {
             Masuk
           </button>
         </div>
-        <div className=""></div>
       </form>
     </div>
 </div>

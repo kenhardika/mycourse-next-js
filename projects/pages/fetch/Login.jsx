@@ -70,44 +70,9 @@ export default function LoginFetch() {
                   Masuk
                 </button>
               </div>
-              <div className=""></div>
             </form>
           </div>
       </div>
 
     );
 }
-
-// export const getStaticProps = async () =>{
-//     try{
-//         const res = await fetch('https://jsonplaceholder.typicode.com/users');
-//         const data = await res.json();
-//         return {
-//             props: {
-//                 data
-//             }
-//         }
-//     }
-//     catch{
-//         throw Error("Fetch API Failed");
-//     }
-// }
-
-// async function fetchCourses(user_id){
-//     try{
-//         const getCourse = await fetch(`https://staging.komunitasmea.com/api/user/${user_id}/courses/active`, {
-//             method:'GET', 
-//             headers: {
-//                 'Content-Type': 'application/x-www-form-urlencoded'
-//               },
-//             mode: 'cors', 
-//             credentials: 'include',
-//         });
-//         const responseCourses = await getCourse.json();
-//         return responseCourses
-//     }
-//     catch{
-//         throw new Error('Fetch API Failed');
-//     }    
-// }
-// export default fetchCourses
