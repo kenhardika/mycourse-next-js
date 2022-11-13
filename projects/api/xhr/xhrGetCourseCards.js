@@ -14,7 +14,7 @@ export default async function xhrGetCourseCards(user_id){
     // catch{
     //     throw new Error('Fetch API Failed');
     // }   
-    
+    let response = {};
     const request = new XMLHttpRequest();
     request.withCredentials = true;
     request.open('GET', `https://staging.komunitasmea.com/api/user/${user_id}/courses/active`);
@@ -22,8 +22,9 @@ export default async function xhrGetCourseCards(user_id){
     request.responseType ='json';
     request.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.response);
-            return this.response;
+            response = this.response;
+            // console.log(response);
+            return response
         }
     };
     request.send()

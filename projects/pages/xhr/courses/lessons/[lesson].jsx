@@ -11,8 +11,17 @@ export default function Lesson(props) {
     const [lessonIndex, setLessonIndex] = useState(0);
     
     const fetchCourses = useCallback(async (courseid, userid) => {
-            const response = await fetchCard(courseid, userid);
-            setData(response.data);
+            const request = new XMLHttpRequest();
+            request.onload = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    setData(request.response.data);
+                }
+            };
+            request.open('GET', `https://staging.komunitasmea.com/api/course?course_id=${courseid}&user_id=${userid}`, true);
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            request.withCredentials = true;
+            request.responseType ='json';
+            request.send(null);
         }, []);
     
     useEffect(()=>{

@@ -19,6 +19,7 @@ export default function LoginXHR() {
       http.open('POST', url, true);
       http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       http.responseType= 'json';
+      http.withCredentials = true;
       http.onload = function() {
         if(http.readyState == 4 && http.status == 200) {
           router.push(`/xhr/courses/${http.response.data.user_id}`)
