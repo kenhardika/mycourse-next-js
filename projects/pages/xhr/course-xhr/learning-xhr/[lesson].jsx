@@ -13,18 +13,17 @@ export default function Lesson() {
     const [lessonIndex, setLessonIndex] = useState(0);
     
     const fetchCourses = useCallback(async () => {
-            const response = await getCardXHR(courseid, id);
-            setData(response);
-        }, [courseid, id]);
+        const response = await getCardXHR(courseid, id);
+        setData(response);
+    }, [courseid, id]);
     
     useEffect(()=>{
     if (router.query.id && router.query.courseid) {
         fetchCourses();
     }
-    }, [fetchCourses]);
+    }, [router, fetchCourses]);
 
-    function handleNextButton(e){
-        e.preventDefault();
+    function handleNextButton(){
         if (data.chapters[chapterIndex].lessons[lessonIndex + 1]){ 
           setLessonIndex((cur)=> cur+1);
           return
@@ -33,18 +32,17 @@ export default function Lesson() {
           if(data.chapters[chapterIndex + 1]){
              setChapterIndex((cur)=> cur + 1);
              setLessonIndex(0);
-              return
+             return
           }
           else if(!data.chapters[chapterIndex + 1]){
-              setChapterIndex(0);
-              setLessonIndex(0);
-              return
+             setChapterIndex(0);
+             setLessonIndex(0);
+             return
           }
       }
       }
 
-      function handlePreviousButton(e){
-        e.preventDefault();
+      function handlePreviousButton(){
           if (data.chapters[chapterIndex].lessons[lessonIndex - 1]){ 
               setLessonIndex((cur)=> cur - 1);
               return
@@ -68,7 +66,6 @@ export default function Lesson() {
         <div className='flex flex-col gap-3 items-center bg-[#58717b]'>
             <Header></Header>
             <main className='flex flex-col w-11/12 gap-5 p-[20px] bg-[#58717b]'>
-            
             {
                 Object.keys(data).length? 
                 <p className='text-2xl'>{data.chapters[chapterIndex].lessons[lessonIndex].title}</p> :

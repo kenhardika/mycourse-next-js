@@ -16,13 +16,12 @@ const Courses = () => {
   
   const navigateToDetailCard = (e, course_id)=> {
     e.preventDefault();
-    // router.push(`/xhr/course-xhr/learning-xhr/${course_id}-${id}`);
     router.push({
       pathname : `/xhr/course-xhr/learning-xhr/${id}`,
       query: {  
         "id": id,
         "courseid": course_id }
-    }, `/xhr/course-xhr/learning-xhr/${id}`)
+    }, `/xhr/course-xhr/learning-xhr/${id}`);
   }
 
   useEffect(()=>{

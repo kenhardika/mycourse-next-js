@@ -23,8 +23,7 @@ export default function Lesson() {
     }, [router, fetchCourses]);
 
 
-    function handleNextButton(e){
-        e.preventDefault();
+    function handleNextButton(){
         if (data.chapters[chapterIndex].lessons[lessonIndex + 1]){ 
           setLessonIndex((cur)=> cur+1);
           return
@@ -43,8 +42,7 @@ export default function Lesson() {
       }
       }
 
-      function handlePreviousButton(e){
-        e.preventDefault();
+      function handlePreviousButton(){
           if (data.chapters[chapterIndex].lessons[lessonIndex - 1]){ 
               setLessonIndex((cur)=> cur - 1);
               return
