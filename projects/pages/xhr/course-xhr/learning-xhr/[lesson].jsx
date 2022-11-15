@@ -3,7 +3,7 @@ import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import Header from '../../../../components/Header';
 
-export default function Lesson(props) {
+export default function Lesson() {
     const router = useRouter();
     const [data, setData] = useState({});
     const [chapterIndex, setChapterIndex] = useState(0);

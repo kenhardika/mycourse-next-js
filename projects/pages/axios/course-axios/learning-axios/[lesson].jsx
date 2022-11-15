@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect } from 'react';
 import Header from '../../../../components/Header';
 import axiosFetchCard from '../../../../api/axios/axiosFetchCard';
 
-export default function Lesson(props) {
+export default function Lesson() {
     const router = useRouter();
     const [data, setData] = useState({});
     const [chapterIndex, setChapterIndex] = useState(0);

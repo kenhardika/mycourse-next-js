@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react';
 import { loginAxiosAPI } from '../../api/axios/loginAxiosAPI';
 
-export default function LoginAxios(props) {
+export default function LoginAxios() {
 
   const router = useRouter();
   const [data,setData]= useState({});

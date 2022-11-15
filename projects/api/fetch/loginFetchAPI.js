@@ -6,7 +6,7 @@ export default async function loginFetchAPI(data){
         formBody.push(encodedKey + "=" + encodedValue);
     }
     formBody = formBody.join("&");
-    return fetch("https://staging.komunitasmea.com/api/login", {
+    const response = await fetch("https://staging.komunitasmea.com/api/login", {
         method:'POST', 
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -14,9 +14,6 @@ export default async function loginFetchAPI(data){
         mode: 'cors', 
         credentials: 'include',
         body: formBody,
-      }).then((response) =>
-       response.json()
-      ).catch((reject)=>
-      console.log(reject)
-      );
+      });
+    return response.json();
 }

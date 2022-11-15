@@ -4,7 +4,7 @@ import axiosFetchCourseCards from '../../../api/axios/axiosFetchCourseCards';
 import Header from '../../../components/Header';
 import Card from '../../../components/Card';
 
-export default function Courses(props) {
+export default function Courses() {
     const router = useRouter();
     const { id } = router.query;
     const [data, setData] = useState([]);

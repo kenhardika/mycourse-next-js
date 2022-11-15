@@ -1,4 +1,4 @@
-export default function Header(props) {
+export default function Header() {
     return (
         <header className="grid grid-cols-2 bg-[#253237] w-full h-[80px] text-gray-100">
             <div className="w-[400px] flex justify-center items-center">

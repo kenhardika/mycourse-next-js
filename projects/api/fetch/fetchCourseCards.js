@@ -1,5 +1,4 @@
 export default async function fetchCourseCards(user_id){
-    try{
         const getCourse = await fetch(`https://staging.komunitasmea.com/api/user/${user_id}/courses/active`, {
             method:'GET', 
             headers: {
@@ -8,10 +7,5 @@ export default async function fetchCourseCards(user_id){
             mode: 'cors', 
             credentials: 'include',
         });
-        const responseCourses = await getCourse.json();
-        return responseCourses
-    }
-    catch{
-        throw new Error('Fetch API Failed');
-    }    
+        return getCourse.json();
 }
