@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
 import Header from '../../../components/Header';
 import Card from '../../../components/Card';
+import getCourseCardsXHR from '../../../api/xhr/getCourseCardsXHR';
 
 const Courses = () => {
   const router = useRouter();
@@ -9,23 +10,19 @@ const Courses = () => {
   const [data, setData] = useState([]);
 
   const fetchCards = useCallback(async () => {
-    const request = new XMLHttpRequest();
-    request.onload = function() {
-        if (request.readyState == 4 && request.status == 200) {
-            setData(request.response.data);
-        }
-    };
-    request.open('GET', `https://staging.komunitasmea.com/api/user/${id}/courses/active`, true);
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.withCredentials = true;
-    request.responseType ='json';
-    request.send(null);
-    
+    const response = await getCourseCardsXHR(id);
+    setData(response);
   }, [id]);
   
   const navigateToDetailCard = (e, course_id)=> {
     e.preventDefault();
-    router.push(`/xhr/course-xhr/learning-xhr/${course_id}-${id}`);
+    // router.push(`/xhr/course-xhr/learning-xhr/${course_id}-${id}`);
+    router.push({
+      pathname : `/xhr/course-xhr/learning-xhr/${id}`,
+      query: {  
+        "id": id,
+        "courseid": course_id }
+    }, `/xhr/course-xhr/learning-xhr/${id}`)
   }
 
   useEffect(()=>{

@@ -1,6 +1,4 @@
 export default function Card({ data, navigateToDetailCard }){ 
-
-console.log(data);
 return (
 <div className="flex justify-center items-center" >
     <div className="bg-white rounded-xl w-[300px] grid grid-col-2">
@@ -24,7 +22,7 @@ return (
                 </div>
                 <div className="flex h-full justify-center items-center">
                     <button  className=" w-[100px] rounded-xl px-3 py-1 text-base active:translate-y-0.5 text-white font-bold bg-[#e47909]" 
-                    onClick={(e)=> navigateToDetailCard(e, course_id) }>Lanjut</button>
+                    onClick={(e)=> navigateToDetailCard(e, data.course_id) }>Lanjut</button>
                 </div>
         </div>
     </div>

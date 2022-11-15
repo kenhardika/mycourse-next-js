@@ -1,34 +1,27 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
+import getCardXHR from '../../../../api/xhr/getCardXHR';
 import Header from '../../../../components/Header';
 
 export default function Lesson() {
     const router = useRouter();
+    const { courseid, id } = router.query;
+
     const [data, setData] = useState({});
     const [chapterIndex, setChapterIndex] = useState(0);
     const [lessonIndex, setLessonIndex] = useState(0);
     
-    const fetchCourses = useCallback(async (courseid, userid) => {
-            const request = new XMLHttpRequest();
-            request.onload = function() {
-                if (request.readyState == 4 && request.status == 200) {
-                    setData(request.response.data);
-                }
-            };
-            request.open('GET', `https://staging.komunitasmea.com/api/course?course_id=${courseid}&user_id=${userid}`, true);
-            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            request.withCredentials = true;
-            request.responseType ='json';
-            request.send(null);
-        }, []);
+    const fetchCourses = useCallback(async () => {
+            const response = await getCardXHR(courseid, id);
+            setData(response);
+        }, [courseid, id]);
     
     useEffect(()=>{
-    if (router && router.query.lesson) {
-        const [courseid, userid] = router.query.lesson.split('-');
-        fetchCourses(courseid, userid);
+    if (router.query.id && router.query.courseid) {
+        fetchCourses();
     }
-    }, [router, fetchCourses]);
+    }, [fetchCourses]);
 
     function handleNextButton(e){
         e.preventDefault();
