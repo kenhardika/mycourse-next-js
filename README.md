@@ -14,6 +14,8 @@ Perbedaan cara untuk set Header:
     request.setRequestHeader(name, value);
     pada name set response header yang direquest seperti "Content-Type", 
     atau gunakan getAllResponseHeaders() untuk menerima semua kecuali set-cookie & set-cookie2 
+        set-cookie: adalah response header untuk mengirim cookie dari server ke user agent dan yang nanti akan dikirim kembali ke server
+        set-cookie2: adalah response header ( sudah deprecated) untuk membatasi list ports kemana cookie akan dikirim
     
     dan pada value untuk memasukan data dari response header yang digunakan, contohnya jika "Content-Type" maka valuenya bisa menggunakan "application/x-www-form-urlencoded".
 
@@ -25,7 +27,7 @@ Perbedaan cara untuk set Header:
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
 3. Axios untuk menambah headers tidak jauh berbeda seperti fetch
-    axios.get(url[, config]) dimana dalam config berisi set headers seperti
+    axios.get(url{ config }) dimana dalam config berisi set headers seperti
      headers:{
             'Content-Type': 'application/x-www-form-urlencoded',
           },

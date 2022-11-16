@@ -15,7 +15,6 @@ export default function LoginAxios() {
   }
     
   const onChangeEvent = (e) =>{
-        e.preventDefault();
         setData((prev)=>({...prev,
             [e.target.name]: e.target.value
         }));
