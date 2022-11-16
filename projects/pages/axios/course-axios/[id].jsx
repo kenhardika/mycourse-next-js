@@ -2,9 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useCallback, useState, useEffect } from 'react';
 import axiosFetchCourseCards from '../../../api/axios/axiosFetchCourseCards';
 import Header from '../../../components/Header';
-import Card from '../../../components/Card';
 import MainContent from '../../../components/MainContent';
-import TitleClass from '../../../components/TitleClass';
 import ContentCards from '../../../components/ContentCards';
 
 export default function Courses() {
