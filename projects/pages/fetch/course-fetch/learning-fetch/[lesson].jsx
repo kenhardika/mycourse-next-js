@@ -3,8 +3,10 @@ import React from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import fetchCard from '../../../../api/fetch/fetchCard';
 import Header from '../../../../components/Header';
+import MainContent from '../../../../components/MainContent';
+import LessonLayer from '../../../../components/LessonLayer';
 
-export default function Lesson(props) {
+export default function Lesson() {
     const router = useRouter();
     const [data, setData] = useState({});
     const [chapterIndex, setChapterIndex] = useState(0);
@@ -66,46 +68,12 @@ export default function Lesson(props) {
     <div className='bg-[#58717b] h-screen bg-scroll'>  
         <div className='flex flex-col gap-3 items-center bg-[#58717b]'>
             <Header></Header>
-            <main className='flex flex-col w-11/12 gap-5 p-[20px] bg-[#58717b]'>
-            
-            {
-                Object.keys(data).length? 
-                <p className='text-2xl'>{data.chapters[chapterIndex].lessons[lessonIndex].title}</p> :
-                <p>{'loading'}</p>
-            }
-                <div className="flex flex-col bg-[#253237] items-center gap-3 p-5 rounded-md">
-                    {
-                        Object.keys(data).length?
-                        <iframe className='rounded-md' title='videoplayer' src={data.chapters[chapterIndex].lessons[lessonIndex].link} 
-                            width={1300} height={500}>
-                        </iframe> :
-                        <iframe title='videoplayer' src={''} 
-                            width={1300} height={500}>
-                        </iframe>
-                    }
-                    <p className='text-sm'>
-                        {
-                        Object.keys(data).length?
-                        data.chapters[chapterIndex].lessons[lessonIndex].link:'loading'
-                        }
-                    </p>
-
-                    <div className="flex flex-row gap-2">
-                        {
-                            Object.keys(data).length? 
-                            <button className='w-[100px] h-[30px] outline-none bg-slate-400 rounded-lg 
-                                text-white active:translate-y-1' id='prevBtn' onClick={(e)=>handlePreviousButton(e)}>Previous</button>:
-                            <button id='prevBtn' >loading</button>
-                        }
-                        {   
-                            Object.keys(data).length? 
-                            <button className='w-[100px] h-[30px] outline-none bg-slate-400 rounded-lg 
-                                text-white active:translate-y-1' id='nextBtn' onClick={(e)=>handleNextButton(e)}>Next</button>:
-                            <button id='nextBtn' >loading</button>
-                        }
-                    </div>
-            </div>
-            </main>
+            <MainContent title={Object.keys(data).length? data.chapters[chapterIndex].lessons[lessonIndex].title : "loading" }>
+                <LessonLayer data = { Object.keys(data).length? data : {} } 
+                    handleNextButton = {handleNextButton}
+                    handlePreviousButton = {handlePreviousButton}
+                    chapterIndex ={chapterIndex} lessonIndex = {lessonIndex} />
+            </MainContent>
         </div>
     </div>
     );
