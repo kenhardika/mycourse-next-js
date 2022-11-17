@@ -17,7 +17,12 @@ export default function Courses() {
     
     const navigateToDetailCard = (e, course_id)=> {
       e.preventDefault();
-      router.push(`/axios/course-axios/learning-axios/${course_id}-${id}`);
+      router.push({
+        pathname : `/axios/course-axios/learning-axios/${id}`,
+        query: {  
+          "id": id,
+          "courseid": course_id }
+      }, `/axios/course-axios/learning-axios/${id}`);
     }
   
     useEffect(()=>{

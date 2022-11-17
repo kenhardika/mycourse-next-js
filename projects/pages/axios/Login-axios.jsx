@@ -11,7 +11,7 @@ export default function LoginAxios() {
   const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await loginAxiosAPI(data);
-        router.push(`/axios/course-axios/${response.data.user_id}`);
+        router.push(`/axios/course-axios/${response.data.data.user_id}`);
   }
     
   const onChangeEvent = (e) =>{

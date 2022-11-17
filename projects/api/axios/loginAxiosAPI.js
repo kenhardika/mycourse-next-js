@@ -9,11 +9,10 @@ export const loginAxiosAPI = async (dataInput) =>{
     }
     formBody = formBody.join("&");
 
-   const {data} = await axios.post('https://staging.komunitasmea.com/api/login', formBody, {
-    headers:{
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    withCredentials: true
-  });
-    return data
+    return axios.post('https://staging.komunitasmea.com/api/login', formBody, {
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      withCredentials: true
+    });
 }

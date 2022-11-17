@@ -20,10 +20,10 @@ export default function Lesson() {
     }, [courseid, id]);
     
     useEffect(()=>{
-    if (router.query.id && router.query.courseid) {
+    if (id && courseid) {
         fetchCourses();
     }
-    }, [router, fetchCourses]);
+    }, [id, courseid, fetchCourses]);
 
     function handleNextButton(){
         if (data.chapters[chapterIndex].lessons[lessonIndex + 1]){ 

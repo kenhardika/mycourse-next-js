@@ -8,21 +8,21 @@ import LessonLayer from '../../../../components/LessonLayer';
 
 export default function Lesson() {
     const router = useRouter();
+    const { courseid, id } = router.query;
     const [data, setData] = useState({});
     const [chapterIndex, setChapterIndex] = useState(0);
     const [lessonIndex, setLessonIndex] = useState(0);
     
-    const fetchCourses = useCallback(async (courseid, userid) => {
-            const response = await fetchCard(courseid, userid);
-            setData(response.data);
-        }, []);
+    const fetchCourses = useCallback(async () => {
+        const response = await fetchCard(courseid, id);
+        setData(response.data);
+    }, [courseid, id]);
     
     useEffect(()=>{
-    if (router && router.query.lesson) {
-        const [courseid, userid] = router.query.lesson.split('-');
-        fetchCourses(courseid, userid);
+    if (id && courseid) {
+        fetchCourses();
     }
-    }, [router, fetchCourses]);
+    }, [id, courseid, fetchCourses]);
 
     function handleNextButton(e){
         if (data.chapters[chapterIndex].lessons[lessonIndex + 1]){ 
